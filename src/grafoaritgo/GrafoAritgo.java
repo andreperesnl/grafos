@@ -27,7 +27,7 @@ public class GrafoAritgo {
 //            System.out.println("E-"+i);
             if (i > 10) {
                 //          System.out.println(("E" + i +""+ (i - 100)));
-               Aresta a = new Aresta(g.getById(i),g.getById((i-10)), 1d);
+               Aresta a = new Aresta(g.getById(i),g.getById((i-10)), Math.random()*100);
                  System.out.println("O:"+a.getOrigem()+" - "+a.getDestino());
             }
 

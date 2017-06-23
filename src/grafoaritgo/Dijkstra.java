@@ -19,15 +19,22 @@ public class Dijkstra {
     public Set<Vertice> verticesVisitados;
     public Set<Vertice> verticesNaoVisitados;
 
+    public Dijkstra(Grafo grafo, Vertice orig) {
+        this.grafo = grafo;
+        origem = orig;
+        origem.setDiCustoMinimo(0d);
+
+    }
+
     public void executar() {
         verticesVisitados = new HashSet<Vertice>();
         verticesNaoVisitados = new HashSet<Vertice>();
         verticesNaoVisitados.add(origem);
         while (!verticesNaoVisitados.isEmpty()) {
             Vertice min = getMenor(verticesNaoVisitados);
+            encontrarDistanciaMinima(min);
             verticesVisitados.add(min);
             verticesNaoVisitados.remove(min);
-            encontrarDistanciaMinima(min);
         }
 
     }
@@ -45,22 +52,18 @@ public class Dijkstra {
         return minimo;
     }
 
-    public Dijkstra(Grafo grafo, Vertice orig) {
-        this.grafo = grafo;
-        origem = orig;
-        origem.setDiCustoMinimo(0d);
-
-    }
-
     public void encontrarDistanciaMinima(Vertice v) {
         for (Aresta adjacente : v.getVizinhos()) {
 
+            if (verticesVisitados.contains(v)) {
+                break;
+            }
             if (adjacente.getVizinho(v).getDiCustoMinimo() > (v.getDiCustoMinimo() + adjacente.getPeso())) {
                 adjacente.getVizinho(v).setDiAntecessor(v);
                 adjacente.getVizinho(v).setDiCustoMinimo((v.getDiCustoMinimo() + adjacente.getPeso()));
 //                adjacente.getVizinho(v).setDiAntecessor(v);
-                verticesNaoVisitados.add(adjacente.getVizinho(v));
             }
+            verticesNaoVisitados.add(adjacente.getVizinho(v));
 
         }
     }
