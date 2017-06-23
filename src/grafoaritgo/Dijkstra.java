@@ -46,7 +46,6 @@ public class Dijkstra {
     }
 
     public Dijkstra(Grafo grafo, Vertice orig) {
-
         this.grafo = grafo;
         origem = orig;
         origem.setDiCustoMinimo(0d);
@@ -59,7 +58,7 @@ public class Dijkstra {
             if (adjacente.getVizinho(v).getDiCustoMinimo() > (v.getDiCustoMinimo() + adjacente.getPeso())) {
                 adjacente.getVizinho(v).setDiAntecessor(v);
                 adjacente.getVizinho(v).setDiCustoMinimo((v.getDiCustoMinimo() + adjacente.getPeso()));
-                adjacente.getVizinho(v).setDiAntecessor(v);
+//                adjacente.getVizinho(v).setDiAntecessor(v);
                 verticesNaoVisitados.add(adjacente.getVizinho(v));
             }
 

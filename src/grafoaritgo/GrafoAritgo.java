@@ -39,6 +39,7 @@ public class GrafoAritgo {
             }
 
         }
+//        g.getById(70).getVizinhos().get(1).setPeso(9999d);
 
 //        Vertice v1 = new Vertice("1");
 //        Vertice v2 = new Vertice("2");
@@ -62,6 +63,15 @@ public class GrafoAritgo {
         
         for(Vertice v:g.getVertices()){
             System.out.println("id:"+v.getId()+" - Custo:"+v.getDiCustoMinimo()+" - Antecessor:"+v.getDiAntecessor());
+        }
+        
+        Vertice destino = g.getById(100);
+        Vertice origem  = g.getById(50);
+        
+        System.out.println("--------Caminho 50-100----------");
+        while(!destino.equals(origem)){
+            System.out.println("ID:"+destino);
+            destino = destino.getDiAntecessor();
         }
         
 //        Vertice v = g.getById(50);
